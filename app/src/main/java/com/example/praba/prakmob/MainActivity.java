@@ -19,17 +19,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
-        preferenceHelper = new PreferenceHelper(getApplicationContext());
-        preferenceHelper.setLogin(true);
 
         btn_logout = findViewById(R.id.logout);
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sharedPreferences.edit()
-                        .clear()
-                        .apply();
+                preferenceHelper.setLogout();
 
                 Intent intent=new Intent(MainActivity.this,Splash.class);
                 startActivity(intent);

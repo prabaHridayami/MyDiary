@@ -17,9 +17,16 @@ public class PreferenceHelper {
                 .apply();
     }
 
+    public void setNama(String nama){
+        sharedPreferences.edit()
+                .putString("nama",nama)
+                .apply();
+    }
+
     public boolean getLogin(){
         return sharedPreferences.getBoolean("login",false);
     }
+
 
     public void setLogout(){
         sharedPreferences.edit()

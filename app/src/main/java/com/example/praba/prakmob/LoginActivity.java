@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText etUsername,etPassword;
     Button btnLogin;
     String inputUsername, inputPassword;
-
+    PreferenceHelper preferencesHelper;
 //    private final String USERNAME="admin";
 //    private final String PASSWORD="123456";
     ApiService service;
@@ -31,8 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         service = ApiClient.getService();
-
-        sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+        preferencesHelper=new PreferenceHelper(getApplicationContext());
 
         setContentView(R.layout.login_layout);
         etUsername=findViewById(R.id.et_username);
@@ -50,10 +49,9 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(Call<UserLogin> call, retrofit2.Response<UserLogin> response) {
                         if(response.isSuccessful()){
                             Toast.makeText(LoginActivity.this, "Berhasil", Toast.LENGTH_SHORT).show();
-                            sharedPreferences.edit()
-                                    .putBoolean("login",true)
-                                    .putString("username",inputUsername)
-                                    .apply();
+                            preferencesHelper.setLogin(true);
+                            preferencesHelper.setNama(inputUsername);
+                            sharedPreferences=getSharedPreferences("user", Context.MODE_PRIVATE);
 
                             Intent intent=new Intent(LoginActivity.this,MainActivity.class);
                             startActivity(intent);
