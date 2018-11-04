@@ -31,7 +31,13 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         service = ApiClient.getService();
-        preferencesHelper=new PreferenceHelper(getApplicationContext());
+        sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+        boolean login = sharedPreferences.getBoolean("login",true);
+        if(login){
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         setContentView(R.layout.login_layout);
         etUsername=findViewById(R.id.et_username);
@@ -49,8 +55,10 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(Call<UserLogin> call, retrofit2.Response<UserLogin> response) {
                         if(response.isSuccessful()){
                             Toast.makeText(LoginActivity.this, "Berhasil", Toast.LENGTH_SHORT).show();
+                            preferencesHelper=new PreferenceHelper(getApplicationContext());
                             preferencesHelper.setLogin(true);
                             preferencesHelper.setNama(inputUsername);
+                            sharedPreferences=getSharedPreferences("user", Context.MODE_PRIVATE);
 
                             Intent intent=new Intent(LoginActivity.this,MainActivity.class);
                             startActivity(intent);

@@ -24,9 +24,17 @@ public class MainActivity extends AppCompatActivity {
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preferenceHelper.setLogout();
+                sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+//                preferenceHelper.setLogin(false);
 
-                Intent intent=new Intent(MainActivity.this,Splash.class);
+//                sharedPreferences.edit()
+//                        .clear()
+//                        .apply();
+                sharedPreferences.edit()
+                        .putBoolean("login",false)
+                        .apply();
+
+                Intent intent=new Intent(MainActivity.this,LoginActivity.class);
                 startActivity(intent);
                 finish();
             }

@@ -9,23 +9,12 @@ import android.os.Bundle;
 
 public class Splash extends AppCompatActivity {
     SharedPreferences sharedPreferences;
+    PreferenceHelper preferenceHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-
-        boolean login = sharedPreferences.getBoolean("login",false);
-        if(login){
-            Intent intent = new Intent(this,LoginActivity.class);
-            startActivity(intent);
-            finish();
-        }else{
-            Intent intent = new Intent(this,MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
 
         new Handler().postDelayed(new Runnable() {
             @Override
