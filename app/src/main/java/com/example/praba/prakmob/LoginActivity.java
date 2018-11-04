@@ -51,7 +51,6 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Berhasil", Toast.LENGTH_SHORT).show();
                             preferencesHelper.setLogin(true);
                             preferencesHelper.setNama(inputUsername);
-                            sharedPreferences=getSharedPreferences("user", Context.MODE_PRIVATE);
 
                             Intent intent=new Intent(LoginActivity.this,MainActivity.class);
                             startActivity(intent);
