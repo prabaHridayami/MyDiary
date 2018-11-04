@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_diary"
+        android:icon="@drawable/ic_mail_black_24dp"
+        android:title="Diary"/>
+
+    <item
+        android:id="@+id/navigation_add"
+        android:icon="@drawable/ic_add_black_24dp"
+        android:title="Add Diary"/>
+
+    <item
+        android:id="@+id/navigation_gallery"
+        android:icon="@drawable/ic_collections_black_24dp"
+        android:title="Gallery"/>
+
+    <item
+        android:id="@+id/navigation_acc"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="Account"/>
+</menu>
